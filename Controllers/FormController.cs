@@ -27,7 +27,10 @@ namespace FIT5032_assignment.Controllers
         }
         public ActionResult Register()
         {
-            
+            return View();
+        }
+        public ActionResult Login()
+        {
             return View();
         }
 
