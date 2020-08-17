@@ -8,6 +8,7 @@ namespace FIT5032_assignment.Controllers
 {
     public class FormController : Controller
     {
+        
         // GET: Form
         public ActionResult Index()
         {
@@ -25,8 +26,10 @@ namespace FIT5032_assignment.Controllers
         {
             return View();
         }
+        [HttpPost]
         public ActionResult Register()
         {
+            
             return View();
         }
         public ActionResult Login()
