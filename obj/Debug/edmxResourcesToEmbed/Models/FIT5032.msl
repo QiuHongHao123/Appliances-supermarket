@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="FIT5032ModelStoreContainer" CdmEntityContainer="FIT5032Entities">
-    <EntitySetMapping Name="AdministratorSets">
-      <EntityTypeMapping TypeName="FIT5032Model.AdministratorSet">
-        <MappingFragment StoreEntitySet="AdministratorSet">
+    <EntitySetMapping Name="Administrators">
+      <EntityTypeMapping TypeName="IsTypeOf(FIT5032Model.Administrator)">
+        <MappingFragment StoreEntitySet="Administrators">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Adminname" ColumnName="Adminname" />
           <ScalarProperty Name="Password" ColumnName="Password" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="AppliancesSets">
-      <EntityTypeMapping TypeName="FIT5032Model.AppliancesSet">
-        <MappingFragment StoreEntitySet="AppliancesSet">
+    <EntitySetMapping Name="Appliances">
+      <EntityTypeMapping TypeName="IsTypeOf(FIT5032Model.Appliances)">
+        <MappingFragment StoreEntitySet="Appliances">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="AppName" ColumnName="AppName" />
           <ScalarProperty Name="Price" ColumnName="Price" />
@@ -21,18 +21,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="CredentialSets">
-      <EntityTypeMapping TypeName="FIT5032Model.CredentialSet">
-        <MappingFragment StoreEntitySet="CredentialSet">
+    <EntitySetMapping Name="Credentials">
+      <EntityTypeMapping TypeName="IsTypeOf(FIT5032Model.Credential)">
+        <MappingFragment StoreEntitySet="Credentials">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="Password" ColumnName="Password" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="OrderSets">
-      <EntityTypeMapping TypeName="FIT5032Model.OrderSet">
-        <MappingFragment StoreEntitySet="OrderSet">
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="IsTypeOf(FIT5032Model.Order)">
+        <MappingFragment StoreEntitySet="Orders">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
           <ScalarProperty Name="CurrentLocation" ColumnName="CurrentLocation" />
@@ -41,18 +41,25 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UserSets">
-      <EntityTypeMapping TypeName="FIT5032Model.UserSet">
-        <MappingFragment StoreEntitySet="UserSet">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(FIT5032Model.User)">
+        <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Username" ColumnName="Username" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Gender" ColumnName="Gender" />
           <ScalarProperty Name="Age" ColumnName="Age" />
           <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="Credential_Id" ColumnName="Credential_Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="UserCredential" TypeName="FIT5032Model.UserCredential" StoreEntitySet="Users">
+      <EndProperty Name="Credential">
+        <ScalarProperty Name="Id" ColumnName="Credential_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

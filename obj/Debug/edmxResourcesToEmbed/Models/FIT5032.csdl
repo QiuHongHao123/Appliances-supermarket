@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="FIT5032Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="AdministratorSet">
+  <EntityType Name="Administrator">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -8,7 +8,7 @@
     <Property Name="Adminname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
-  <EntityType Name="AppliancesSet">
+  <EntityType Name="Appliances">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -19,16 +19,16 @@
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="OrderSets" Relationship="Self.FK_OrderAppliances" FromRole="AppliancesSet" ToRole="OrderSet" />
   </EntityType>
-  <EntityType Name="CredentialSet">
+  <EntityType Name="Credential">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="UserId" Type="Int32" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="UserSets" Relationship="Self.FK_UserCredential" FromRole="CredentialSet" ToRole="UserSet" />
+    <NavigationProperty Name="User" Relationship="FIT5032Model.UserCredential" FromRole="Credential" ToRole="User" />
   </EntityType>
-  <EntityType Name="OrderSet">
+  <EntityType Name="Order">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -40,7 +40,7 @@
     <NavigationProperty Name="AppliancesSet" Relationship="Self.FK_OrderAppliances" FromRole="OrderSet" ToRole="AppliancesSet" />
     <NavigationProperty Name="UserSet" Relationship="Self.FK_UserOrder" FromRole="OrderSet" ToRole="UserSet" />
   </EntityType>
-  <EntityType Name="UserSet">
+  <EntityType Name="User">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -48,15 +48,14 @@
     <Property Name="Username" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Age" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Age" Type="Int32" />
     <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Credential_Id" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="CredentialSet" Relationship="Self.FK_UserCredential" FromRole="UserSet" ToRole="CredentialSet" />
     <NavigationProperty Name="OrderSets" Relationship="Self.FK_UserOrder" FromRole="UserSet" ToRole="OrderSet" />
+    <NavigationProperty Name="Credential" Relationship="FIT5032Model.UserCredential" FromRole="User" ToRole="Credential" />
   </EntityType>
   <Association Name="FK_OrderAppliances">
-    <End Role="AppliancesSet" Type="Self.AppliancesSet" Multiplicity="1" />
-    <End Role="OrderSet" Type="Self.OrderSet" Multiplicity="*" />
+    <End Role="AppliancesSet" Type="FIT5032Model.Appliances" Multiplicity="1" />
+    <End Role="OrderSet" Type="FIT5032Model.Order" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AppliancesSet">
         <PropertyRef Name="Id" />
@@ -66,21 +65,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UserCredential">
-    <End Role="CredentialSet" Type="Self.CredentialSet" Multiplicity="1" />
-    <End Role="UserSet" Type="Self.UserSet" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CredentialSet">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="UserSet">
-        <PropertyRef Name="Credential_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_UserOrder">
-    <End Role="UserSet" Type="Self.UserSet" Multiplicity="1" />
-    <End Role="OrderSet" Type="Self.OrderSet" Multiplicity="*" />
+    <End Role="UserSet" Type="FIT5032Model.User" Multiplicity="1" />
+    <End Role="OrderSet" Type="FIT5032Model.Order" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="UserSet">
         <PropertyRef Name="Id" />
@@ -91,22 +78,26 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="FIT5032Entities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="AdministratorSets" EntityType="Self.AdministratorSet" />
-    <EntitySet Name="AppliancesSets" EntityType="Self.AppliancesSet" />
-    <EntitySet Name="CredentialSets" EntityType="Self.CredentialSet" />
-    <EntitySet Name="OrderSets" EntityType="Self.OrderSet" />
-    <EntitySet Name="UserSets" EntityType="Self.UserSet" />
+    <EntitySet Name="Administrators" EntityType="FIT5032Model.Administrator" />
+    <EntitySet Name="Appliances" EntityType="FIT5032Model.Appliances" />
+    <EntitySet Name="Credentials" EntityType="FIT5032Model.Credential" />
+    <EntitySet Name="Orders" EntityType="FIT5032Model.Order" />
+    <EntitySet Name="Users" EntityType="FIT5032Model.User" />
     <AssociationSet Name="FK_OrderAppliances" Association="Self.FK_OrderAppliances">
-      <End Role="AppliancesSet" EntitySet="AppliancesSets" />
-      <End Role="OrderSet" EntitySet="OrderSets" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserCredential" Association="Self.FK_UserCredential">
-      <End Role="CredentialSet" EntitySet="CredentialSets" />
-      <End Role="UserSet" EntitySet="UserSets" />
+      <End Role="AppliancesSet" EntitySet="Appliances" />
+      <End Role="OrderSet" EntitySet="Orders" />
     </AssociationSet>
     <AssociationSet Name="FK_UserOrder" Association="Self.FK_UserOrder">
-      <End Role="UserSet" EntitySet="UserSets" />
-      <End Role="OrderSet" EntitySet="OrderSets" />
+      <End Role="UserSet" EntitySet="Users" />
+      <End Role="OrderSet" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="UserCredential" Association="FIT5032Model.UserCredential">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Credential" EntitySet="Credentials" />
     </AssociationSet>
   </EntityContainer>
+  <Association Name="UserCredential">
+    <End Type="FIT5032Model.User" Role="User" Multiplicity="1" />
+    <End Type="FIT5032Model.Credential" Role="Credential" Multiplicity="1" />
+  </Association>
 </Schema>

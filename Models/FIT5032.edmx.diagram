@@ -5,14 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="93c69b141cf242a980c653d82c1debb5" Name="Diagram1">
-        <EntityTypeShape EntityType="FIT5032Model.AdministratorSet" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="FIT5032Model.AppliancesSet" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="FIT5032Model.CredentialSet" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="FIT5032Model.OrderSet" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="FIT5032Model.UserSet" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FIT5032Model.Administrator" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FIT5032Model.Appliances" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FIT5032Model.Credential" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FIT5032Model.Order" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FIT5032Model.User" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="FIT5032Model.FK_OrderAppliances" ManuallyRouted="false" />
-        <AssociationConnector Association="FIT5032Model.FK_UserCredential" ManuallyRouted="false" />
         <AssociationConnector Association="FIT5032Model.FK_UserOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="FIT5032Model.UserCredential" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

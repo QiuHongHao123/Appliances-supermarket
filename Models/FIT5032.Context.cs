@@ -25,10 +25,10 @@ namespace FIT5032_assignment.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AdministratorSet> AdministratorSets { get; set; }
-        public virtual DbSet<AppliancesSet> AppliancesSets { get; set; }
-        public virtual DbSet<CredentialSet> CredentialSets { get; set; }
-        public virtual DbSet<OrderSet> OrderSets { get; set; }
-        public virtual DbSet<UserSet> UserSets { get; set; }
+        public virtual DbSet<Administrator> Administrators { get; set; }
+        public virtual DbSet<Appliances> Appliances { get; set; }
+        public virtual DbSet<Credential> Credentials { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }

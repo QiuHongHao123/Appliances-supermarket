@@ -133,13 +133,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AdministratorSet.cs">
+    <Compile Include="Models\Administrator.cs">
       <DependentUpon>FIT5032.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AppliancesSet.cs">
+    <Compile Include="Models\Appliances.cs">
       <DependentUpon>FIT5032.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CredentialSet.cs">
+    <Compile Include="Models\Credential.cs">
       <DependentUpon>FIT5032.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FIT5032.Context.cs">
@@ -158,10 +158,10 @@
       <DependentUpon>FIT5032.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\FormViewModel.cs" />
-    <Compile Include="Models\OrderSet.cs">
+    <Compile Include="Models\Order.cs">
       <DependentUpon>FIT5032.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserSet.cs">
+    <Compile Include="Models\User.cs">
       <DependentUpon>FIT5032.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -184,6 +184,7 @@
       <DependentUpon>FIT5032.edmx</DependentUpon>
       <LastGenOutput>FIT5032.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\FIT5032.edmx.sql" />
     <Content Include="Models\FIT5032.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FIT5032.edmx</DependentUpon>
