@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -10,7 +11,7 @@ namespace FIT5032_assignment.Controllers
     public class FormController : Controller
     {
 
-        private HomeController homeController=new HomeController();
+        private String verifycode = "not init";
         private FIT5032Entities db = new FIT5032Entities();
         // GET: Form
         public ActionResult Index()
@@ -18,18 +19,8 @@ namespace FIT5032_assignment.Controllers
             return View();
         }
 
-        // GET: Form/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
 
-        // GET: Form/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
+      
         public ActionResult Register()
         {
             return View();
@@ -68,9 +59,9 @@ namespace FIT5032_assignment.Controllers
         public ActionResult Login(Login model)
         {
 
-            String userName=model.Username;
+            String userEmail=model.Email;
             String password = model.Password;
-            List<User> loginUsers=db.Users.Where(u=> u.Username==userName).ToList();
+            List<User> loginUsers=db.Users.Where(u=> u.Email==userEmail).ToList();
             if (loginUsers.Count == 0)
             {
                 ViewBag.Message = "User does not exist";
@@ -86,48 +77,41 @@ namespace FIT5032_assignment.Controllers
                     ViewBag.Message = "Password is wrong";
                 }
             }
-
-
-
             return View();
         }
-        // POST: Form/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Form/Edit/5
-        public ActionResult Edit(int id)
-        {
+        public ActionResult ResetPassword() {
             return View();
         }
 
-        // POST: Form/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        private ActionResult sendVerifyEmail(ResetPasswordView model)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+            String email = model.Email;
+            getVerifyCode(true, 10);
+            if (verifycode != "not init")
+            { 
+                EmailService emailservice = new EmailService(email, "The verify code", verifycode);
+                ViewBag.emailMesage=emailservice.sendEmail();
             }
-            catch
-            {
-                return View();
+            else {
+                ViewBag.emailMessage = "fail to generate verifycode";
             }
+            return View();
         }
+
+        [HttpPost]
+        public ActionResult ResetPassword(ResetPasswordView model,String action)
+        {
+            if (action == "sendVerifyEmail") {
+                sendVerifyEmail(model);
+            }
+            else { 
+            if (model.Password != "" && model.verifyCode == verifycode) {
+                
+            }
+            }
+            return View();
+        }
+
 
         // GET: Form/Delete/5
         public ActionResult Delete(int id)
@@ -149,6 +133,24 @@ namespace FIT5032_assignment.Controllers
             {
                 return View();
             }
+        }
+        private void getVerifyCode(bool b, int n)//b：是否有复杂字符，n：生成的字符串长度
+
+        {
+            
+            string str = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            if (b = true)
+            {
+                str += "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";//复杂字符
+            }
+            StringBuilder SB = new StringBuilder();
+            Random rd = new Random();
+            for (int i = 0; i < n; i++)
+            {
+                SB.Append(str.Substring(rd.Next(0, str.Length), 1));
+            }
+            verifycode=SB.ToString();
+
         }
     }
 }
