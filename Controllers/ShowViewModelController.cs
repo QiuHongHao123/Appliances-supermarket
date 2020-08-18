@@ -13,5 +13,16 @@ namespace FIT5032_assignment.Controllers
         {
             return View();
         }
+        public ActionResult ApplienceShow()
+        {
+            Models.ApplienceShowViewModel applienceShowViewModel = new Models.ApplienceShowViewModel();
+            applienceShowViewModel.amount = 0;
+            applienceShowViewModel.describe = "";
+            applienceShowViewModel.applienceName = "not init";
+            applienceShowViewModel.imgUrl = "/Img/default400.jpg";
+            applienceShowViewModel.price = 0;
+
+            return View(applienceShowViewModel);
+        }
     }
 }
