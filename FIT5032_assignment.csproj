@@ -131,6 +131,7 @@
     <Compile Include="Controllers\EmailService.cs" />
     <Compile Include="Controllers\FormController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ShowViewModelController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -140,6 +141,7 @@
     <Compile Include="Models\Appliances.cs">
       <DependentUpon>FIT5032.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ShowViewModel.cs" />
     <Compile Include="Models\Credential.cs">
       <DependentUpon>FIT5032.tt</DependentUpon>
     </Compile>
@@ -229,6 +231,7 @@
     <Content Include="Views\Form\Register.cshtml" />
     <Content Include="Views\Form\SendVerifyEmail.cshtml" />
     <Content Include="Views\Form\ResetPassword.cshtml" />
+    <Content Include="Views\ShowViewModel\ApplienceShowViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

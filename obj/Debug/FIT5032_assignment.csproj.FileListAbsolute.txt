@@ -82,7 +82,6 @@ D:\VSRepos\Appliance_Supermarket\Appliances-supermarket\obj\Debug\FIT5032_assign
 D:\VSRepos\Appliance_Supermarket\Appliances-supermarket\obj\Debug\FIT5032_assignment.dll
 D:\VSRepos\Appliance_Supermarket\Appliances-supermarket\obj\Debug\FIT5032_assignment.pdb
 F:\ASP_net\FIT5032_assignment\obj\Debug\FIT5032_assignment.csproj.CoreCompileInputs.cache
-F:\ASP_net\FIT5032_assignment\obj\Debug\FIT5032_assignment.csprojAssemblyReference.cache
 F:\ASP_net\FIT5032_assignment\bin\FIT5032_assignment.dll.config
 F:\ASP_net\FIT5032_assignment\bin\FIT5032_assignment.dll
 F:\ASP_net\FIT5032_assignment\bin\FIT5032_assignment.pdb

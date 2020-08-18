@@ -18,6 +18,7 @@
     <Property Name="Amount" Type="Int32" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="OrderSets" Relationship="Self.FK_OrderAppliances" FromRole="AppliancesSet" ToRole="OrderSet" />
+    <Property Name="Img_Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Credential">
     <Key>

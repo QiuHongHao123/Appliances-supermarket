@@ -13,6 +13,7 @@
     <EntitySetMapping Name="Appliances">
       <EntityTypeMapping TypeName="IsTypeOf(FIT5032Model.Appliances)">
         <MappingFragment StoreEntitySet="Appliances">
+          <ScalarProperty Name="Img_Url" ColumnName="Img_Url" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="AppName" ColumnName="AppName" />
           <ScalarProperty Name="Price" ColumnName="Price" />
