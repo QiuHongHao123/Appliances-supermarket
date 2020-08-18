@@ -38,12 +38,6 @@ namespace FIT5032_assignment.Models
         public string Password { get; set; }
     }
     public class ResetPasswordView{
-        
-       
-        [Key]
-        public int id { get; set; }
-        [Required]
-        public string Email { get; set; }
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
@@ -53,5 +47,10 @@ namespace FIT5032_assignment.Models
         public string ConfirmPassword { get; set; }
         [Required]
         public string verifyCode{ get; set; }
+    }
+    public class SendVerifyEmailView
+    {
+        [Required]
+        public string Email { get; set; }
     }
 }

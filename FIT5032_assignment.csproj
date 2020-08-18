@@ -227,6 +227,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Form\Login.cshtml" />
     <Content Include="Views\Form\Register.cshtml" />
+    <Content Include="Views\Form\SendVerifyEmail.cshtml" />
     <Content Include="Views\Form\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>

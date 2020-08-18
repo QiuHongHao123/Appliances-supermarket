@@ -50,7 +50,7 @@ namespace FIT5032_assignment.Controllers
                 System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient();
                 smtp.Host = "smtp.qq.com"; smtp.EnableSsl = true;
                 smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new System.Net.NetworkCredential("3158874848@qq.com", "q159487263");
+                smtp.Credentials = new System.Net.NetworkCredential("3158874848@qq.com", "mjsnsykkvqfidejd");
                 smtp.DeliveryMethod = System.Net.Mail.SmtpDeliveryMethod.Network;
                 smtp.Send(myMail);
                 return "Successfull send the Email, please enter the verifycode";

@@ -11,7 +11,7 @@ namespace FIT5032_assignment.Controllers
     public class FormController : Controller
     {
 
-        private String verifycode = "not init";
+        
         private FIT5032Entities db = new FIT5032Entities();
         // GET: Form
         public ActionResult Index()
@@ -79,37 +79,74 @@ namespace FIT5032_assignment.Controllers
             }
             return View();
         }
-        public ActionResult ResetPassword() {
-            return View();
-        }
-
-        private ActionResult sendVerifyEmail(ResetPasswordView model)
+        
+        public ActionResult SendVerifyEmail()
         {
-            String email = model.Email;
-            getVerifyCode(true, 10);
-            if (verifycode != "not init")
-            { 
-                EmailService emailservice = new EmailService(email, "The verify code", verifycode);
-                ViewBag.emailMesage=emailservice.sendEmail();
-            }
-            else {
-                ViewBag.emailMessage = "fail to generate verifycode";
-            }
             return View();
         }
 
         [HttpPost]
-        public ActionResult ResetPassword(ResetPasswordView model,String action)
+        public ActionResult SendVerifyEmail(SendVerifyEmailView model)
         {
-            if (action == "sendVerifyEmail") {
-                sendVerifyEmail(model);
+            string verifycode = "not init";
+            string email = model.Email;
+            List<User> Users=db.Users.Where(u => u.Email == email).ToList();
+            
+            if (Users.Count != 0)
+            {
+                verifycode=getVerifyCode(false, 10);
+                if (verifycode != "not init")
+                {
+
+                    EmailService emailservice = new EmailService(email, "The verify code", verifycode);
+                    ViewBag.emailMesage = emailservice.sendEmail();
+                    TempData["verifyCode"] = verifycode;
+                    TempData["Email"] = email;
+                    return  Content("<script>alert('The email has been send');window.location.href='../Form/ResetPassword';</script>");
+                }
+                else
+                {
+                    ViewBag.emailMessage = "fail to generate verifycode";
+                }
             }
-            else { 
-            if (model.Password != "" && model.verifyCode == verifycode) {
-                
-            }
+            else {
+                ViewBag.emailMessage = "This email not been registed";
             }
             return View();
+        }
+        public ActionResult ResetPassword()
+        {
+            string email = (string)TempData["Email"];
+            
+            if (email == null) { return RedirectToAction("SendVerifyEmail"); }
+            ViewBag.userEmail = "Wellcome "+email;
+            TempData["Email"] = email;
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ResetPassword(ResetPasswordView model)
+        {
+            string newPassword = model.Password;
+            string inputVerify = model.verifyCode;
+            string email = (string)TempData["Email"];
+            
+            string verifyCode = (string)TempData["verifyCode"];
+            if (verifyCode == inputVerify)
+            {
+                //List<User> user=db.Users.Where(u => u.Email == email).ToList();
+                Credential credential = db.Credentials.Where(c => c.User.Email == email).FirstOrDefault();
+                credential.Password = newPassword;
+                db.SaveChanges();
+
+                return Content("<script>alert('The password successfully reset');window.location.href='../Form/Login';</script>");
+            }
+            else {
+                TempData["verifyCode"] = verifyCode;
+                TempData["Email"] = email;
+                return View();
+            }
+            
         }
 
 
@@ -134,7 +171,7 @@ namespace FIT5032_assignment.Controllers
                 return View();
             }
         }
-        private void getVerifyCode(bool b, int n)//b：是否有复杂字符，n：生成的字符串长度
+        private string getVerifyCode(bool b, int n)//b：是否有复杂字符，n：生成的字符串长度
 
         {
             
@@ -149,7 +186,7 @@ namespace FIT5032_assignment.Controllers
             {
                 SB.Append(str.Substring(rd.Next(0, str.Length), 1));
             }
-            verifycode=SB.ToString();
+            return SB.ToString();
 
         }
     }

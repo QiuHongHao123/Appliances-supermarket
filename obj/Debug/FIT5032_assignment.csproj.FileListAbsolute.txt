@@ -81,6 +81,8 @@ D:\VSRepos\Appliance_Supermarket\Appliances-supermarket\obj\Debug\FIT5032_assign
 D:\VSRepos\Appliance_Supermarket\Appliances-supermarket\obj\Debug\FIT5032_assignment.csproj.CopyComplete
 D:\VSRepos\Appliance_Supermarket\Appliances-supermarket\obj\Debug\FIT5032_assignment.dll
 D:\VSRepos\Appliance_Supermarket\Appliances-supermarket\obj\Debug\FIT5032_assignment.pdb
+F:\ASP_net\FIT5032_assignment\obj\Debug\FIT5032_assignment.csproj.CoreCompileInputs.cache
+F:\ASP_net\FIT5032_assignment\obj\Debug\FIT5032_assignment.csprojAssemblyReference.cache
 F:\ASP_net\FIT5032_assignment\bin\FIT5032_assignment.dll.config
 F:\ASP_net\FIT5032_assignment\bin\FIT5032_assignment.dll
 F:\ASP_net\FIT5032_assignment\bin\FIT5032_assignment.pdb
@@ -159,7 +161,6 @@ F:\ASP_net\FIT5032_assignment\bin\System.Web.WebPages.Razor.xml
 F:\ASP_net\FIT5032_assignment\bin\Newtonsoft.Json.xml
 F:\ASP_net\FIT5032_assignment\bin\Antlr3.Runtime.pdb
 F:\ASP_net\FIT5032_assignment\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-F:\ASP_net\FIT5032_assignment\obj\Debug\FIT5032_assignment.csproj.CoreCompileInputs.cache
 F:\ASP_net\FIT5032_assignment\obj\Debug\FIT5032_assignment.csproj.CopyComplete
 F:\ASP_net\FIT5032_assignment\obj\Debug\FIT5032_assignment.dll
 F:\ASP_net\FIT5032_assignment\obj\Debug\FIT5032_assignment.pdb
