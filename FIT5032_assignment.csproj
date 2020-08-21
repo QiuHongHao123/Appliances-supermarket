@@ -234,6 +234,7 @@
     <Content Include="Views\Form\SendVerifyEmail.cshtml" />
     <Content Include="Views\Form\ResetPassword.cshtml" />
     <Content Include="Views\ShowViewModel\ApplienceShow.cshtml" />
+    <Content Include="Views\Form\BookTheApplience.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

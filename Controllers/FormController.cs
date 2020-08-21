@@ -47,7 +47,8 @@ namespace FIT5032_assignment.Controllers
                 db.Users.Add(user);
 
                 db.SaveChanges();
-                return RedirectToAction("../Home/Index");
+                
+                return RedirectToAction("Login","Form");
             }
             catch {
                 return RedirectToAction("../Shared/Error");
@@ -79,6 +80,7 @@ namespace FIT5032_assignment.Controllers
                     }
                     else
                     {
+                        Session["LoginUser"] = loginUser;
                         return RedirectToAction("Index", "Home");
                     }
                 }
@@ -163,8 +165,37 @@ namespace FIT5032_assignment.Controllers
             }
             
         }
-
-
+      
+        public ActionResult BookTheApplience(ApplienceShowViewModel applienceShowViewModel)
+        {
+            User loginuser = (User)Session["LoginUser"];
+            if (loginuser == null || applienceShowViewModel == null) {
+                return RedirectToAction("Login", "Form");
+            }
+            BookTheApplience bookTheApplience = new BookTheApplience();
+            bookTheApplience.imgUrl = applienceShowViewModel.imgUrl;
+            bookTheApplience.applienceName = applienceShowViewModel.applienceName;
+            bookTheApplience.amount = 0;
+            bookTheApplience.price = applienceShowViewModel.price;
+            bookTheApplience.total_price = 0;
+            bookTheApplience.id = applienceShowViewModel.id;
+            return View(bookTheApplience);
+        }
+        
+        [HttpPost]
+        public ActionResult BookTheApplience(BookTheApplience bookTheApplience) {
+            User loginuser = (User)Session["LoginUser"];
+            Order newOrder = new Order();
+            newOrder.Date = DateTime.Now;
+            newOrder.UserSet = loginuser;
+            newOrder.Amount = bookTheApplience.amount;
+            newOrder.AppliancesId = bookTheApplience.id;
+            newOrder.CurrentLocation = "Home";
+            db.Orders.Add(newOrder);
+            db.SaveChanges();
+            return RedirectToAction("Index","Home");
+        }
+        
         // GET: Form/Delete/5
         public ActionResult Delete(int id)
         {
@@ -186,6 +217,7 @@ namespace FIT5032_assignment.Controllers
                 return View();
             }
         }
+
         private string getVerifyCode(bool b, int n)//b：是否有复杂字符，n：生成的字符串长度
 
         {

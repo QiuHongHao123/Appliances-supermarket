@@ -29,5 +29,7 @@ namespace FIT5032_assignment.Models
         public virtual DbSet<Credential> Credentials { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<User> Users { get; set; }
+
+        public System.Data.Entity.DbSet<FIT5032_assignment.Models.BookTheApplience> BookTheAppliences { get; set; }
     }
 }
