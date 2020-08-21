@@ -9,6 +9,7 @@ namespace FIT5032_assignment.Controllers
     public class ShowViewModelController : Controller
     {
         // GET: ShowViewModel
+       
         public ActionResult Index()
         {
             return View();
@@ -21,7 +22,7 @@ namespace FIT5032_assignment.Controllers
             applienceShowViewModel.applienceName = "not init";
             applienceShowViewModel.imgUrl = "/Img/default400.jpg";
             applienceShowViewModel.price = 0;
-
+            
             return View(applienceShowViewModel);
         }
     }

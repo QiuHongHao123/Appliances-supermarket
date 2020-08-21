@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="93c69b141cf242a980c653d82c1debb5" Name="Diagram1">
-        <EntityTypeShape EntityType="FIT5032Model.Administrator" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="FIT5032Model.Appliances" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="FIT5032Model.Credential" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="FIT5032Model.Order" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />

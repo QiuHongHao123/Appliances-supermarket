@@ -10,6 +10,7 @@ namespace FIT5032_assignment.Controllers
 {
     public class FormController : Controller
     {
+        Security security = new Security();
 
         
         private FIT5032Entities db = new FIT5032Entities();
@@ -26,7 +27,7 @@ namespace FIT5032_assignment.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Register(RegisterView model)
+        public ActionResult Register(RegisterView model, string returnUrl)
         {
             try
             {
@@ -56,7 +57,7 @@ namespace FIT5032_assignment.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(Login model)
+        public ActionResult Login(Login model,string returnUrl)
         {
 
             String userEmail=model.Email;
@@ -71,7 +72,14 @@ namespace FIT5032_assignment.Controllers
                 if (loginUser.Credential.Password == password)
                 {
 
-                    return RedirectToAction("../Home/Index");
+                    if (security.IsLocalUrl(returnUrl))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
                 else {
                     ViewBag.Message = "Password is wrong";
@@ -86,7 +94,7 @@ namespace FIT5032_assignment.Controllers
         }
 
         [HttpPost]
-        public ActionResult SendVerifyEmail(SendVerifyEmailView model)
+        public ActionResult SendVerifyEmail(SendVerifyEmailView model, string returnUrl)
         {
             string verifycode = "not init";
             string email = model.Email;
@@ -107,12 +115,14 @@ namespace FIT5032_assignment.Controllers
                 else
                 {
                     ViewBag.emailMessage = "fail to generate verifycode";
+                    
                 }
             }
             else {
                 ViewBag.emailMessage = "This email not been registed";
             }
-            return View();
+            
+            return Redirect(returnUrl);
         }
         public ActionResult ResetPassword()
         {

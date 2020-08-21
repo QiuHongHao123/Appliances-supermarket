@@ -19,6 +19,8 @@ namespace FIT5032_assignment.Models
         public string CurrentLocation { get; set; }
         public int UserId { get; set; }
         public int AppliancesId { get; set; }
+        public Nullable<System.DateTime> Date { get; set; }
+        public Nullable<int> Rate { get; set; }
     
         public virtual Appliances AppliancesSet { get; set; }
         public virtual User UserSet { get; set; }

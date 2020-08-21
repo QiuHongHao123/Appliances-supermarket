@@ -1,13 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="FIT5032Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="Administrator">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Adminname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-  </EntityType>
   <EntityType Name="Appliances">
     <Key>
       <PropertyRef Name="Id" />
@@ -40,6 +32,8 @@
     <Property Name="AppliancesId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="AppliancesSet" Relationship="Self.FK_OrderAppliances" FromRole="OrderSet" ToRole="AppliancesSet" />
     <NavigationProperty Name="UserSet" Relationship="Self.FK_UserOrder" FromRole="OrderSet" ToRole="UserSet" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Rate" Type="Int32" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -79,7 +73,6 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="FIT5032Entities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Administrators" EntityType="FIT5032Model.Administrator" />
     <EntitySet Name="Appliances" EntityType="FIT5032Model.Appliances" />
     <EntitySet Name="Credentials" EntityType="FIT5032Model.Credential" />
     <EntitySet Name="Orders" EntityType="FIT5032Model.Order" />

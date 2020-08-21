@@ -1,15 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="FIT5032ModelStoreContainer" CdmEntityContainer="FIT5032Entities">
-    <EntitySetMapping Name="Administrators">
-      <EntityTypeMapping TypeName="IsTypeOf(FIT5032Model.Administrator)">
-        <MappingFragment StoreEntitySet="Administrators">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Adminname" ColumnName="Adminname" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Appliances">
       <EntityTypeMapping TypeName="IsTypeOf(FIT5032Model.Appliances)">
         <MappingFragment StoreEntitySet="Appliances">
@@ -34,6 +25,8 @@
     <EntitySetMapping Name="Orders">
       <EntityTypeMapping TypeName="IsTypeOf(FIT5032Model.Order)">
         <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
           <ScalarProperty Name="CurrentLocation" ColumnName="CurrentLocation" />

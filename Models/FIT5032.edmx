@@ -5,14 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="FIT5032Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Administrators">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Adminname" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-        </EntityType>
         <EntityType Name="Appliances">
           <Key>
             <PropertyRef Name="Id" />
@@ -41,6 +33,8 @@
           <Property Name="CurrentLocation" Type="nvarchar(max)" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="AppliancesId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Rate" Type="int" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -91,7 +85,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="FIT5032ModelStoreContainer">
-          <EntitySet Name="Administrators" EntityType="Self.Administrators" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Appliances" EntityType="Self.Appliances" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Credentials" EntityType="Self.Credentials" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
@@ -113,14 +106,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FIT5032Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Administrator">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Adminname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
         <EntityType Name="Appliances">
           <Key>
             <PropertyRef Name="Id" />
@@ -153,6 +138,8 @@
           <Property Name="AppliancesId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AppliancesSet" Relationship="Self.FK_OrderAppliances" FromRole="OrderSet" ToRole="AppliancesSet" />
           <NavigationProperty Name="UserSet" Relationship="Self.FK_UserOrder" FromRole="OrderSet" ToRole="UserSet" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Rate" Type="Int32" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -192,7 +179,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="FIT5032Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Administrators" EntityType="FIT5032Model.Administrator" />
           <EntitySet Name="Appliances" EntityType="FIT5032Model.Appliances" />
           <EntitySet Name="Credentials" EntityType="FIT5032Model.Credential" />
           <EntitySet Name="Orders" EntityType="FIT5032Model.Order" />
@@ -220,15 +206,6 @@
     <edmx:Mappings>
     <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="FIT5032ModelStoreContainer" CdmEntityContainer="FIT5032Entities">
-    <EntitySetMapping Name="Administrators">
-      <EntityTypeMapping TypeName="IsTypeOf(FIT5032Model.Administrator)">
-        <MappingFragment StoreEntitySet="Administrators">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Adminname" ColumnName="Adminname" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Appliances">
       <EntityTypeMapping TypeName="IsTypeOf(FIT5032Model.Appliances)">
         <MappingFragment StoreEntitySet="Appliances">
@@ -253,7 +230,9 @@
     <EntitySetMapping Name="Orders">
       <EntityTypeMapping TypeName="IsTypeOf(FIT5032Model.Order)">
         <MappingFragment StoreEntitySet="Orders">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
           <ScalarProperty Name="CurrentLocation" ColumnName="CurrentLocation" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
@@ -294,8 +273,8 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

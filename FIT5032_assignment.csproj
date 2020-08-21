@@ -131,12 +131,10 @@
     <Compile Include="Controllers\EmailService.cs" />
     <Compile Include="Controllers\FormController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Security.cs" />
     <Compile Include="Controllers\ShowViewModelController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Administrator.cs">
-      <DependentUpon>FIT5032.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Appliances.cs">
       <DependentUpon>FIT5032.tt</DependentUpon>
