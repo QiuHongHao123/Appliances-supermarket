@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FIT5032_assignment.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,8 +9,14 @@ namespace FIT5032_assignment.Controllers
 {
     public class HomeController : Controller
     {
+        private FIT5032Entities db = new FIT5032Entities();
+
         public ActionResult Index()
         {
+            //get appliance data
+            List<Appliances> appliances = db.Appliances.ToList();
+            //pass user data to view
+            ViewData["appliances"] = appliances;
             return View();
         }
 

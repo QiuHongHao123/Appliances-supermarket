@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FIT5032_assignment.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,7 @@ namespace FIT5032_assignment.Controllers
         }
         public ActionResult ApplienceShow()
         {
+            Appliances appliance = (Appliances)TempData["curAppliance"];
             Models.ApplienceShowViewModel applienceShowViewModel = new Models.ApplienceShowViewModel();
             applienceShowViewModel.amount = 0;
             applienceShowViewModel.describe = "";

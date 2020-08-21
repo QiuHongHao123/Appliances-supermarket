@@ -180,10 +180,13 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Img\default.jpg" />
-    <Content Include="Img\default400.jpg" />
-    <Content Include="Img\default600.jpg" />
-    <Content Include="Img\default800.jpg" />
+    <Content Include="Img\table1.png" />
+    <Content Include="Img\table2.png" />
+    <Content Include="Img\table3.png" />
+    <Content Include="Img\table4.png" />
+    <Content Include="Img\table5.png" />
+    <Content Include="Img\table6.png" />
+    <Content Include="Img\table7.png" />
     <Content Include="Models\FIT5032.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>FIT5032.edmx</DependentUpon>
