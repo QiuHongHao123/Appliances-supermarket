@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.WebPages;
 
 namespace FIT5032_assignment.Controllers
 {
@@ -121,8 +122,12 @@ namespace FIT5032_assignment.Controllers
             else {
                 ViewBag.emailMessage = "This email not been registed";
             }
+            if (returnUrl.IsEmpty())
+            { return RedirectToAction("Index", "Home"); }
+            else {
+                return Redirect(returnUrl);
+            }
             
-            return Redirect(returnUrl);
         }
         public ActionResult ResetPassword()
         {
