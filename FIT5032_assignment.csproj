@@ -131,6 +131,7 @@
     <Compile Include="Controllers\EmailService.cs" />
     <Compile Include="Controllers\FormController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\Security.cs" />
     <Compile Include="Controllers\ShowViewModelController.cs" />
     <Compile Include="Global.asax.cs">
@@ -237,6 +238,9 @@
     <Content Include="Views\Form\ResetPassword.cshtml" />
     <Content Include="Views\ShowViewModel\ApplianceShow.cshtml" />
     <Content Include="Views\Form\BookTheAppliance.cshtml" />
+    <Content Include="Views\Home\Detail.cshtml" />
+    <Content Include="Views\Order\Order.cshtml" />
+    <Content Include="Views\Admin\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

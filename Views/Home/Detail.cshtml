@@ -1,0 +1,165 @@
+﻿@using FIT5032_assignment.Models;
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var appliance = ViewData["appliance"] as Appliances;
+}
+
+<div class="img_box">
+    <img class="apppliancePic" src="@appliance.Img_Url"/>
+</div>
+<div class="detail_box">
+    <ul>
+        <li class="applianceName">
+            @appliance.AppName
+        </li>
+        <li class="appliancePrice">
+            ￥@appliance.Price
+        </li>
+        <li class="applianceAmount">
+            <span class="label label-info">Amount:</span>@appliance.Amount
+        </li>
+        <li class="applianceDesc">
+            @appliance.Description
+        </li>
+        <li>
+            <button id="btn_buy" class="btn btn-default" onclick="showBuy()">Buy</button>
+        </li>
+    </ul>
+</div>
+
+<div id="box_order" class="order_box">
+    @{
+        User user = new User();
+        User curUser = Session["LoginUser"] as User;
+        if (curUser == null)
+        {
+            user.Id = 0;
+            <span class="label label-danger">Please login first!</span>
+            @Html.ActionLink("Login", "Login", "Form")
+        }
+        else
+        {
+            user = curUser;
+        }
+    }
+    <form class="form-horizontal" role="form" action="../Order/CreateOrder" method="post">
+        <div class="form-group">
+            <label class="col-sm-4 control-label">User Id</label>
+            <div class="col-sm-8">
+                @user.Id
+                <input type="text" class="form-control" name="UserId" value="@user.Id" style="display:none" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">User Name</label>
+            <div class="col-sm-8">
+                @user.Username
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Appliance Id</label>
+            <div class="col-sm-8">
+                @appliance.Id
+                <input type="text" class="form-control" name="ApplianceId" value="@appliance.Id" style="display:none" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Appliance Name</label>
+            <div class="col-sm-8">
+                @appliance.AppName
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Amount</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="Amount">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-4 control-label">Address</label>
+            <div class="col-sm-8">
+                <input type="text" name="Address" class="form-control" placeholder="delivery address">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-5 col-sm-10">
+                <button type="submit" class="btn btn-default">OK</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+    .img_box {
+        width: 400px;
+        margin: auto;
+    }
+
+    .apppliancePic {
+        width: 350px;
+    }
+
+    .detail_box {
+        width: 450px;
+        margin: 10px auto;
+        padding: 10px;
+        background: #f3f3f3;
+    }
+
+    ul {
+        list-style: none;
+        text-align: center;
+    }
+
+    li {
+        margin-bottom: 10px;
+    }
+
+    .applianceName {
+        font-size: 40px;
+    }
+
+    .appliancePrice {
+        font-size: x-large;
+    }
+
+    .applianceDesc {
+        width: 360px;
+        word-wrap: break-word;
+        text-align: left;
+    }
+
+    .label {
+        font-size: 100%;
+        vertical-align: text-top;
+        margin-right: 15px;
+    }
+
+    .label-info {
+        background-color: #000000;
+    }
+
+    .order_box {
+        display: none;
+        width: 450px;
+        margin: auto;
+        padding: 10px;
+        background: #f3f3f3;
+    }
+</style>
+
+<script>
+    function showBuy() {
+        var btn = document.getElementById("btn_buy")
+
+        var div = document.getElementById("box_order");
+        if (div.style.display == "block") {
+            div.style.display = 'none';
+        }
+        else {
+            div.style.display = 'block';
+        }
+    }
+</script>
+

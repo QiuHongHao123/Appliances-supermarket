@@ -33,5 +33,16 @@ namespace FIT5032_assignment.Controllers
 
             return View();
         }
+
+        public ActionResult Detail(int applianceId)
+        {
+            //System.Diagnostics.Debug.WriteLine("appliance: " + applianceId);
+            //get the appliance by id
+            Appliances appliance = db.Appliances.Where(app => app.Id == applianceId).ToList()[0];
+            //System.Diagnostics.Debug.WriteLine("appliance: " + appliance.Id + appliance.AppName + appliance.Price);
+            //pass the appliance to the detail page
+            ViewData["appliance"] = appliance;
+            return View();
+        }
     }
 }

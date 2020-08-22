@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using FIT5032_assignment.Models
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,6 +7,32 @@
     <title>@ViewBag.Title - Appliance Supermarket</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    <style>
+        .nav > li {
+            font-size: 20px;
+        }
+
+        .navbar-brand {
+            font-size: 40px;
+        }
+
+        .navbar-inverse .navbar-nav > li > a {
+            color: #ffffff;
+        }
+
+        .navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus {
+            color: #000;
+            background-color: white;
+        }
+
+        .user_label  {
+            margin-left: 650px;
+        }
+        .user_login {
+            margin-left: 600px;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -16,13 +43,24 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Appliance Supermarket", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("🛒", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Appliance", "About", "Home")</li>
-                    <li>@Html.ActionLink("Order", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Appliance", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Order", "Order", "Order")</li>
+                    <li>@Html.ActionLink("About", "Contact", "Home")</li>
+                    @{
+                        User user = Session["LoginUser"] as User;
+                    }
+                    @if (user == null)
+                    {
+                        <li class="user_login">@Html.ActionLink("Login", "Login", "Form")</li>
+                        <li class="user_register">@Html.ActionLink("Register", "Register", "Form")</li>
+                    }else {
+                        <li class="user_label">@Html.ActionLink(user.Username, "Index", "Home")</li>
+                    }
+
                 </ul>
             </div>
         </div>

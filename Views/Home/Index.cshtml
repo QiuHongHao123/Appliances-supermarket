@@ -53,12 +53,8 @@
                 <div class="applianceName">@appliance.AppName</div>
                 <div class="appliancePrice">
                     <span class="label label-info">￥@appliance.Price</span>
-                </div>
-                @{
-                    TempData["curAppliance"] = appliance;
-                }
-                <div class="btn-link applianceDetail">@Html.ActionLink(">>>", "ApplianceShow", "ShowViewModel")</div>
-
+                </div>              
+                <div class="btn-link applianceDetail">@Html.ActionLink(">>>", "Detail", "Home", new {applianceId = appliance.Id },new { })</div>
             </li>
         }
     </ul>

@@ -1,0 +1,79 @@
+﻿@using FIT5032_assignment.Models
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    //get all user's orders
+    var orders = ViewData["orders"] as List<Order>;
+}
+
+<div>
+    <table class="table table-striped table-hover">
+        <caption>Your Orders</caption>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>Address</th>
+                <th>Date</th>
+                <th>Total</th>
+                <th>Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in orders)
+            {
+                var total = order.AppliancesSet.Price * order.Amount;
+                <tr>
+                    <td>@order.AppliancesSet.AppName</td>
+                    <td>@order.AppliancesSet.Price</td>
+                    <td>@order.Amount</td>
+                    <td>@order.CurrentLocation</td>
+                    <td>@order.Date</td>
+                    <td>@total</td>
+                    <td>
+                        @{
+                            if (order.Rate == null || order.Rate < 1)
+                            {
+                                <div class="dropdown">
+                                    <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown">
+                                        Star it
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                        <li role="presentation">
+                                            @Html.ActionLink("⭐⭐⭐⭐⭐", "UpdateOrder", "Order", new { orderId = order.Id, rate = 5 }, new { role = "menuitem" })
+                                        </li>
+                                        <li role="presentation">
+                                            @Html.ActionLink("⭐⭐⭐⭐", "UpdateOrder", "Order", new { orderId = order.Id, rate = 4 }, new { role = "menuitem" })
+                                        </li>
+                                        <li role="presentation">
+                                            @Html.ActionLink("⭐⭐⭐", "UpdateOrder", "Order", new { orderId = order.Id, rate = 3 }, new { role = "menuitem" })
+                                        </li>
+                                        <li role="presentation">
+                                            @Html.ActionLink("⭐⭐", "UpdateOrder", "Order", new { orderId = order.Id, rate = 2 }, new { role = "menuitem" })
+                                        </li>
+                                        <li role="presentation">
+                                            @Html.ActionLink("⭐", "UpdateOrder", "Order", new { orderId = order.Id, rate = 1 }, new { role = "menuitem" })
+                                        </li>
+                                    </ul>
+                                </div>
+                            }
+                            else
+                            {
+                                for (int i = 0; i < order.Rate; i++)
+                                {
+                                    <span>⭐</span>
+                                }
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "DeleteOrder", "Order", new { orderId = order.Id }, new { })
+                    </td>
+              </tr>
+            }
+        </tbody>
+    </table>
+</div>
