@@ -10,10 +10,10 @@ namespace FIT5032_assignment.Models
     {
      
     }
-    public class ApplienceShowViewModel {
+    public class ApplianceShowViewModel {
         [Key]
         public int id { get; set; }
-        public string applienceName { get; set; }
+        public string applianceName { get; set; }
         public string imgUrl { get; set; }
         public float price { get; set; }
         public int amount { get; set; }

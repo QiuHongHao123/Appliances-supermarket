@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FIT5032_assignment.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,21 +13,18 @@ namespace FIT5032_assignment.Controllers
        
         public ActionResult Index()
         {
+
             return View();
         }
-        public ActionResult ApplienceShow()
+        public ActionResult ApplianceShow()
         {
-            
-            Models.ApplienceShowViewModel applienceShowViewModel = new Models.ApplienceShowViewModel();
-            applienceShowViewModel.amount = 0;
-            applienceShowViewModel.describe = "";
-            applienceShowViewModel.applienceName = "not init";
-            applienceShowViewModel.imgUrl = "/Img/default400.jpg";
-            applienceShowViewModel.price = 0;
-            applienceShowViewModel.id = 0;
 
 
-            return View(applienceShowViewModel);
+
+            Appliances appliance = (Appliances)TempData["curAppliance"];
+
+
+            return View();
         }
     }
 }

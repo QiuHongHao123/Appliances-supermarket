@@ -1,0 +1,64 @@
+﻿@model FIT5032_assignment.Models.ApplianceShowViewModel
+
+@{
+    ViewBag.Title = "ApplienceShowViewModel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>ApplienceShowViewModel</h2>
+
+<div>
+    <h4>ApplienceShowViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.applianceName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.applianceName)
+        </dd>
+
+        <dt>
+            Img:
+        </dt>
+
+        <dd>
+            
+            
+            <img src="@Html.DisplayFor(model=>model.imgUrl).ToString()" />
+
+        </dd>
+       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.describe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.describe)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Add to floder", "BookTheAppliance","Form"); |
+    @Html.ActionLink("Back to List", "Index","Home")
+</p>

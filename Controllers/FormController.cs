@@ -166,30 +166,20 @@ namespace FIT5032_assignment.Controllers
             
         }
       
-        public ActionResult BookTheApplience(ApplienceShowViewModel applienceShowViewModel)
+        public ActionResult BookTheAppliance()
         {
-            User loginuser = (User)Session["LoginUser"];
-            if (loginuser == null || applienceShowViewModel == null) {
-                return RedirectToAction("Login", "Form");
-            }
-            BookTheApplience bookTheApplience = new BookTheApplience();
-            bookTheApplience.imgUrl = applienceShowViewModel.imgUrl;
-            bookTheApplience.applienceName = applienceShowViewModel.applienceName;
-            bookTheApplience.amount = 0;
-            bookTheApplience.price = applienceShowViewModel.price;
-            bookTheApplience.total_price = 0;
-            bookTheApplience.id = applienceShowViewModel.id;
-            return View(bookTheApplience);
+            
+            return View();
         }
         
         [HttpPost]
-        public ActionResult BookTheApplience(BookTheApplience bookTheApplience) {
+        public ActionResult BookTheApplience(BookTheAppliance bookTheAppliance) {
             User loginuser = (User)Session["LoginUser"];
             Order newOrder = new Order();
             newOrder.Date = DateTime.Now;
             newOrder.UserSet = loginuser;
-            newOrder.Amount = bookTheApplience.amount;
-            newOrder.AppliancesId = bookTheApplience.id;
+            newOrder.Amount = bookTheAppliance.amount;
+            newOrder.AppliancesId = bookTheAppliance.id;
             newOrder.CurrentLocation = "Home";
             db.Orders.Add(newOrder);
             db.SaveChanges();

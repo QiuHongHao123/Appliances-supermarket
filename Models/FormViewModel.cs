@@ -53,10 +53,10 @@ namespace FIT5032_assignment.Models
         [Required]
         public string Email { get; set; }
     }
-    public class BookTheApplience { 
+    public class BookTheAppliance { 
         [Key]
         public int id { get; set; }
-        public string applienceName { get; set; }
+        public string applianceName { get; set; }
         public string imgUrl { get; set; }
         public int amount { get; set; }
         public float price { get; set; }
