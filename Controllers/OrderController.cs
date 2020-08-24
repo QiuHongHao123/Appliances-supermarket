@@ -4,7 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+/**
+ * author Si Yinbo
+ * Manage orders
+ * 
+ */
 namespace FIT5032_assignment.Controllers
 {
     public class OrderController : Controller
@@ -14,10 +18,18 @@ namespace FIT5032_assignment.Controllers
         // GET: Order
         public ActionResult Order()
         {
-
-            List<Order> orders = db.Orders.ToList();
-            ViewData["orders"] = orders;
-            return View();
+            User user = Session["LoginUser"] as User;
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Form");
+            }
+            else {
+                int userId = user.Id;
+                System.Diagnostics.Debug.WriteLine("userID: " + userId);
+                List<Order> orders = db.Orders.Where(o => o.UserId == userId).ToList();
+                ViewData["orders"] = orders;
+                return View();
+            }  
         }
 
         public ActionResult CreateOrder()

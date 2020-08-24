@@ -230,15 +230,12 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Form\Login.cshtml" />
     <Content Include="Views\Form\Register.cshtml" />
     <Content Include="Views\Form\SendVerifyEmail.cshtml" />
     <Content Include="Views\Form\ResetPassword.cshtml" />
     <Content Include="Views\ShowViewModel\ApplianceShow.cshtml" />
-    <Content Include="Views\Form\BookTheAppliance.cshtml" />
     <Content Include="Views\Home\Detail.cshtml" />
     <Content Include="Views\Order\Order.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />

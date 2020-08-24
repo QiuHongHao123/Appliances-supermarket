@@ -85,7 +85,14 @@ namespace FIT5032_assignment.Controllers
                     else
                     {
                         Session["LoginUser"] = loginUser;
-                        return RedirectToAction("Index", "Home");
+                        if (loginUser.Username.Equals("admin"))
+                        {
+                            return RedirectToAction("Admin", "Admin");
+                        }
+                        else {
+                            return RedirectToAction("Index", "Home");
+                        }
+                        
                     }
                 }
                 else {
@@ -94,7 +101,13 @@ namespace FIT5032_assignment.Controllers
             }
             return View();
         }
-        
+
+        public ActionResult Logout()
+        {
+            Session.Remove("LoginUser");
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult SendVerifyEmail()
         {
             return View();

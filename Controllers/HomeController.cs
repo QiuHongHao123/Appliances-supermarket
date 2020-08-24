@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+/**
+ * author Si Yinbo
+ * 
+ */
 namespace FIT5032_assignment.Controllers
 {
     public class HomeController : Controller
@@ -17,20 +20,6 @@ namespace FIT5032_assignment.Controllers
             List<Appliances> appliances = db.Appliances.ToList();
             //pass appliance data to view
             ViewData["appliances"] = appliances;
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 

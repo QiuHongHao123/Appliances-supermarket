@@ -26,12 +26,6 @@
             background-color: white;
         }
 
-        .user_label  {
-            margin-left: 650px;
-        }
-        .user_login {
-            margin-left: 600px;
-        }
     </style>
 </head>
 <body>
@@ -58,7 +52,7 @@
                         <li class="user_login">@Html.ActionLink("Login", "Login", "Form")</li>
                         <li class="user_register">@Html.ActionLink("Register", "Register", "Form")</li>
                     }else {
-                        <li class="user_label">@Html.ActionLink(user.Username, "Index", "Home")</li>
+                        <li class="user_label">@Html.ActionLink(user.Username + " Exit", "Logout", "Form")</li>
                     }
 
                 </ul>

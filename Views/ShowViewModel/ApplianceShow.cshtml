@@ -1,5 +1,5 @@
-﻿@model FIT5032_assignment.Models.ApplianceShowViewModel
-
+﻿<!-- author: Qiu-->
+@model FIT5032_assignment.Models.ApplianceShowViewModel
 @{
     ViewBag.Title = "ApplienceShowViewModel";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -25,12 +25,12 @@
         </dt>
 
         <dd>
-            
-            
+
+
             <img src="@Html.DisplayFor(model=>model.imgUrl).ToString()" />
 
         </dd>
-       
+
 
         <dt>
             @Html.DisplayNameFor(model => model.price)
@@ -59,6 +59,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Add to floder", "BookTheAppliance","Form"); |
-    @Html.ActionLink("Back to List", "Index","Home")
+    @Html.ActionLink("Add to floder", "BookTheAppliance", "Form"); |
+    @Html.ActionLink("Back to List", "Index", "Home")
 </p>

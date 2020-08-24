@@ -7,6 +7,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+/**
+ * author Si Yinbo
+ * For administrator to manage appliances
+ * 
+ */
+
 namespace FIT5032_assignment.Controllers
 {
     public class AdminController : Controller
@@ -15,6 +21,10 @@ namespace FIT5032_assignment.Controllers
         // GET: Admin
         public ActionResult Admin()
         {
+            User curUser = Session["LoginUser"] as User;
+            if (curUser == null || !curUser.Email.Equals("001@admin.com")) {
+                return RedirectToAction("Index", "Home");
+            }
             //get appliance data
             List<Appliances> appliances = db.Appliances.ToList();
             //pass appliance data to view

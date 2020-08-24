@@ -1,5 +1,5 @@
-﻿@model FIT5032_assignment.Models.Login
-<!--author Qiu-->
+﻿<!--author Qiu-->
+@model FIT5032_assignment.Models.Login
 @{
     ViewBag.Title = "View";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,10 +8,10 @@
 <h2>Login</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -37,6 +37,7 @@
         </div>
     </div>
 }
+@Html.ActionLink("Reset Password", "ResetPassword", "Form")
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
