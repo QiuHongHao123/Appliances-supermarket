@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-
+/*
+ * author Qiu
+ * The View models to generate view and transfor the data
+ *  
+ */
 namespace FIT5032_assignment.Models
 {
     public class ShowViewModel

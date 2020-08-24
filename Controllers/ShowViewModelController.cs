@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+/**
+ * author Qiu
+ * The controller to show the appliances
+ */
 namespace FIT5032_assignment.Controllers
 {
     public class ShowViewModelController : Controller

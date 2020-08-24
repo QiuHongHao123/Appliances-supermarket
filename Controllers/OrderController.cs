@@ -14,6 +14,7 @@ namespace FIT5032_assignment.Controllers
         // GET: Order
         public ActionResult Order()
         {
+
             List<Order> orders = db.Orders.ToList();
             ViewData["orders"] = orders;
             return View();

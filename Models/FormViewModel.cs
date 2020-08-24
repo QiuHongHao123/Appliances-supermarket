@@ -4,7 +4,11 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
-
+/**
+ * author Qiu
+ * The view models
+ * To show the forms
+ */
 namespace FIT5032_assignment.Models
 {
     public class FormViewModel

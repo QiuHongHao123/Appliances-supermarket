@@ -6,7 +6,11 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.WebPages;
-
+/**
+ * author Qiu
+ * This contoller to control most form post function
+ * include register login resetpassword
+ */
 namespace FIT5032_assignment.Controllers
 {
     public class FormController : Controller
@@ -207,7 +211,7 @@ namespace FIT5032_assignment.Controllers
                 return View();
             }
         }
-
+        //generate a verfiycode so we can may the Authentication basd on email
         private string getVerifyCode(bool b, int n)//b：是否有复杂字符，n：生成的字符串长度
 
         {

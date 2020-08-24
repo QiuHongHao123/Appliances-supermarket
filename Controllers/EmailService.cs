@@ -4,9 +4,20 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using System.Web;
-
+/**
+ * author Qiu
+ * This class is to implment the email services
+ * 
+ */
 namespace FIT5032_assignment.Controllers
 {
+    /**
+     * To:the destination
+     * title:email title
+     * content； email content
+     * This function is to send veirfy code to reset password
+     * 
+     */
     public class EmailService
     {
         private String to;
