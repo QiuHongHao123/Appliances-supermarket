@@ -41,7 +41,7 @@ namespace FIT5032_assignment.Controllers
             return RedirectToAction("Order", "Order");
         }
 
-        public ActionResult DeleteOrder(int orderId, int rate) 
+        public ActionResult DeleteOrder(int orderId) 
         {
             Order order = db.Orders.Where(o => o.Id == orderId).ToList()[0];
             db.Orders.Remove(order);

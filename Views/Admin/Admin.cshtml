@@ -1,7 +1,184 @@
-﻿
+﻿@using FIT5032_assignment.Models;
 @{
     ViewBag.Title = "Admin";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var appliances = ViewData["appliances"] as List<Appliances>;
 }
 
+<div>
+    <table class="table table-striped table-hover">
+        <caption>Appliances
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add_box">
+                Add
+            </button>
+        </caption>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th>Picture</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var appliance in appliances)
+            {
+                <tr>
+                    <td>@appliance.Id</td>
+                    <td>@appliance.AppName</td>
+                    <td>@appliance.Price</td>
+                    <td>@appliance.Amount</td>
+                    <td>@appliance.Description</td>
+                    <td><img src="@appliance.Img_Url" /></td>
+                    <td>
+                        @Html.ActionLink("Delete", "DeleteAppliance", "Admin", new { appId = appliance.Id }, new { })
+                    </td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#update_box" onclick="Values('@appliance.Id', '@appliance.AppName', '@appliance.Price', '@appliance.Amount')">
+                            Update
+                        </button>
+                    </td>
+                    <td class="modal fade" id="update_box" tabindex="-1" role="dialog" aria-labelledby="update_box_title" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title" id="update_box_title">
+                                        Update the appliance
+                                    </h4>
+                                </div>
+                                <form class="form-horizontal" role="form" action="../Admin/UpdateAppliance" method="post" enctype="multipart/form-data">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="applianceName" class="col-sm-2 control-label">Name</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" style="display:none" id="applianceId" name="appId" />
+                                                <input type="text" class="form-control" id="applianceName" name="appName">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="appliancePrice" class="col-sm-2 control-label">Price</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="appliancePrice" name="appPrice">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="applianceAmount" class="col-sm-2 control-label">Amount</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="applianceAmount" name="appAmount">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="applianceDesc" class="col-sm-2 control-label">Description</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="applianceDesc" name="appDesc">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="file" id="appliancePic" name="appPic">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-5 col-sm-10">
+                                                <button type="submit" class="btn btn-default">OK</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
 
+            }
+        </tbody>
+    </table>
+    <div class="modal fade" id="add_box" tabindex="-1" role="dialog" aria-labelledby="add_box_title" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="add_box_title">
+                        add a new appliance
+                    </h4>
+                </div>
+                <form class="form-horizontal" role="form" action="../Admin/AddAppliance" method="post" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="applianceName" class="col-sm-2 control-label">Name</label>
+                            <div class="col-sm-10">
+                                <input type="text" style="display:none" id="applianceId" name="appId" />
+                                <input type="text" class="form-control" id="applianceName" name="appName">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="appliancePrice" class="col-sm-2 control-label">Price</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="appliancePrice" name="appPrice">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="applianceAmount" class="col-sm-2 control-label">Amount</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="applianceAmount" name="appAmount">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="applianceDesc" class="col-sm-2 control-label">Description</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="applianceDesc" name="appDesc">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="file" id="appliancePic" name="appPic">
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-5 col-sm-10">
+                                <button type="submit" class="btn btn-default">OK</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .table {
+        table-layout: fixed;
+    }
+
+        .table > tbody > tr > td {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            vertical-align: middle;
+        }
+
+    img {
+        width: 50px;
+    }
+
+    #appliancePic {
+        margin-left: 40px;
+    }
+</style>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+<script>
+    $('#add_box').modal('hide');
+    function Values(id, name, price, amount) {
+        console.log(id, name, price, amount);
+        $("#applianceId").val(id);
+        $("#applianceName").val(name);
+        $("#appliancePrice").val(price);
+        $("#applianceAmount").val(amount);
+    }
+</script>

@@ -15,7 +15,7 @@ namespace FIT5032_assignment.Controllers
         {
             //get appliance data
             List<Appliances> appliances = db.Appliances.ToList();
-            //pass user data to view
+            //pass appliance data to view
             ViewData["appliances"] = appliances;
             return View();
         }
